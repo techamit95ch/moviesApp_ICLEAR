@@ -5,7 +5,8 @@ import Banner from "../../component/banner/banner";
 import PlayCircleOutlineRoundedIcon from "@material-ui/icons/PlayCircleOutlineRounded";
 import PauseCircleOutlineRoundedIcon from '@material-ui/icons/PauseCircleOutlineRounded';
 import ReactPlayer from 'react-player'
-
+import { useHistory } from "react-router-dom"; // version 5.2.0
+import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 // import "./style.css";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function Details({ details }) {
+    const history = useHistory();
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   console.log(details);
   const classes = useStyles();
@@ -49,7 +52,12 @@ export default function Details({ details }) {
         srcSet={"https://image.tmdb.org/t/p/w500" + details.backdrop_path}
       />
       <Container className="">
-        <div style={{ justifyContent: "center" }}>
+      <ArrowBackRoundedIcon onClick={() => {
+              history.push("/");
+            }}
+            style={{ fontSize: 50 }}/>
+        <div style={{ justifyContent: "center", textAlign: "center"}}>
+            
           <h1>{details.original_title}</h1>
           {show === false?  (<PlayCircleOutlineRoundedIcon
             onClick={() => {
@@ -64,7 +72,7 @@ export default function Details({ details }) {
           <p>[Popularity : {details.popularity}]</p>
           <p>[Votes : {details.vote_count}]</p>
           <p>[Avarage :{details.vote_average}]</p>
-        </div>
+        
         <h1>{details.release_date}</h1>
         <p>{details.overview}</p>
         {show === true ? (
@@ -75,6 +83,7 @@ export default function Details({ details }) {
           ) : (
             ``
           )}
+          </div>
       </Container>
     </div>
   );

@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import {  makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom"; // version 5.2.0
 
 const useStyles = makeStyles((theme) => ({
     
@@ -52,6 +53,7 @@ ElevationScroll.propTypes = {
 
 export default function ElevateAppBar(props) {
     const classes = useStyles();
+    const history = useHistory();
 
   return (
     <div >
@@ -59,7 +61,9 @@ export default function ElevateAppBar(props) {
       <ElevationScroll {...props}>
         <AppBar className={classes.appBar}>
           <Toolbar >
-            <Typography variant="h6" >
+            <Typography variant="h6"  onClick={() => {
+              history.push("/");
+            }}>
             <Avatar className={classes.avatar} src="https://images.creativemarket.com/0.1.0/ps/7414066/1820/1214/m1/fpnw/wm1/logo-design-for-movie-production-company-01-.jpg?1575502358&s=c37b3e6a8863b415070b669f6c8a457c"/></Typography>
           </Toolbar>
         </AppBar>

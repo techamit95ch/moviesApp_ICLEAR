@@ -203,7 +203,7 @@ export default function Popular({ results,fabs,setFabs,setDetails }) {
           
           {fabs.map((item) => (
             <ImageListItem key={item.backdrop_path}>
-              <Card className={classes.img} item={item} fromFabs={true}/>
+              <Card className={classes.img} item={item} fromFabs={true} setDetails={setDetails}/>
             </ImageListItem>
           ))}
           
